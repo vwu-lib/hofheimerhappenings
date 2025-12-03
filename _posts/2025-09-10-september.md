@@ -2,8 +2,8 @@
 layout: post
 title: "September 2025: Hofheimer Happenings"
 date: 2025-09-10
-summary: |
-  The library has several updates this month. Our shelf-shifting project is now complete, though construction will continue for a few weeks on the second floor near the University Archives. For quieter study space, students can use rooms and seating on the opposite side of the floor. Some “A–E” shelves are temporarily mislabeled, so ask staff if you need help locating materials.
+summary: >
+The library has several updates this month. Our shelf-shifting project is now complete, though construction will continue for a few weeks on the second floor near the University Archives. For quieter study space, students can use rooms and seating on the opposite side of the floor. Some “A–E” shelves are temporarily mislabeled, so ask staff if you need help locating materials.
 
 We’ve also updated our operating hours: the library is now open on Saturdays, and Sunday hours have been extended through midnight.
 
