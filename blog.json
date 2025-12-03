@@ -4,43 +4,36 @@ layout: json_index
 [
 {% for post in site.posts %}
   {%- comment -%}
-    Normalize key text forms:
-    - clean_content: full post, stripped
-    - explicit_excerpt: what Jekyll thinks is post.excerpt (respects <!--more-->)
+    Normalize text for comparison:
+    - clean_content → full post body as plain text
+    - explicit_excerpt → the excerpt Jekyll generates (respects <!--more-->)
   {%- endcomment -%}
+
   {%- assign clean_content = post.content | strip_html | strip_newlines -%}
   {%- assign explicit_excerpt = post.excerpt | strip_html | strip_newlines -%}
 
   {%- comment -%}
-    Decide which source to use:
+    Determine which source to use as the excerpt:
 
-    1) If front-matter "summary" exists → use that (Option C)
-    2) Else if explicit_excerpt differs from full content → treat as real excerpt (Option A)
-    3) Else → fall back to full content (Option B)
+    Priority:
+    1. front matter "summary" (Option C)
+    2. post.excerpt if <!--more--> was used (Option A)
+    3. else the cleaned full content (Option B fallback)
   {%- endcomment -%}
+
   {%- if post.summary -%}
     {%- assign excerpt_source = post.summary -%}
+
   {%- elsif explicit_excerpt != "" and explicit_excerpt != clean_content -%}
     {%- assign excerpt_source = explicit_excerpt -%}
+
   {%- else -%}
     {%- assign excerpt_source = clean_content -%}
+
   {%- endif -%}
 
   {%- comment -%}
-    Optional: always truncate to a max length (Option B-style safety net).
-    Tweak 40 to whatever feels right.
-  {%- endcomment -%}
-  {%- assign final_excerpt = excerpt_source
-    | strip_html
-    | strip_newlines
-    | truncatewords: 40
-  -%}
-
-  {
-    "title":   {{ post.title | jsonify }},
-    "date":    {{ post.date | date_to_xmlschema | jsonify }},
-    "url":     {{ post.url | absolute_url | jsonify }},
-    "excerpt": {{ final_excerpt | jsonify }}
-  }{% if forloop.last == false %},{% endif %}
-{% endfor %}
-]
+    Final excerpt processing:
+    - strip HTML fully → ensures safe, uniform carousel text
+    - strip newlines
+    - truncate to max 40 words (adjust as desired)
