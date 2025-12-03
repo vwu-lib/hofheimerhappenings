@@ -2,7 +2,7 @@
 layout: post
 title: "September 2025: Hofheimer Happenings"
 date: 2025-09-10
-summary: >
+summary: |
   The library has several updates this month. Our shelf-shifting project is now complete,
   though construction will continue for a few weeks on the second floor near the University
   Archives. For quieter study space, students can use rooms and seating on the opposite
