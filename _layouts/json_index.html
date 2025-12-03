@@ -1,3 +1,27 @@
----
-layout: json_index
----
+[
+{% for post in site.posts %}
+  {%- assign clean_content    = post.content | strip_html | strip_newlines -%}
+  {%- assign explicit_excerpt = post.excerpt | strip_html | strip_newlines -%}
+
+  {%- if post.summary -%}
+    {%- assign excerpt_source = post.summary -%}
+  {%- elsif explicit_excerpt != "" and explicit_excerpt != clean_content -%}
+    {%- assign excerpt_source = explicit_excerpt -%}
+  {%- else -%}
+    {%- assign excerpt_source = clean_content -%}
+  {%- endif -%}
+
+  {%- assign final_excerpt = excerpt_source
+    | strip_html
+    | strip_newlines
+    | truncatewords: 40
+  -%}
+
+  {
+    "title":   {{ post.title | jsonify }},
+    "url":     {{ post.url | absolute_url | jsonify }},
+    "date":    {{ post.date | date_to_xmlschema | jsonify }},
+    "excerpt": {{ final_excerpt | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
