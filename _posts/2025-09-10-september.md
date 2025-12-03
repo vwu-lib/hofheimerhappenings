@@ -2,7 +2,7 @@
 layout: post
 title: "November 2025: Hofheimer Happenings"
 date: 2025-11-13
-summary: >
+summary: |
   The library has several updates this month. Our shelf-shifting project is now complete, though construction will continue for a few weeks on the second floor near the University Archives. For quieter study space, students can use rooms and seating on the opposite side of the floor. Some “A–E” shelves are temporarily mislabeled, so ask staff if you need help locating materials.
 
   We’ve also updated our operating hours: the library is now open on Saturdays, and Sunday hours have been extended through midnight.
@@ -12,7 +12,6 @@ summary: >
   Two trial databases—Applied Science & Technology Source Ultimate and World Politics Review—remain available, but only until early and late December.
 
   The library’s YouTube channel now includes new instructional videos on annotated bibliographies, peer-reviewed sources, and using library databases. There’s also a new feature introducing the library’s zine collection.
-
 ---
 
 ![Header Image](https://files.constantcontact.com/65543a52401/ab3cc6d9-8d07-4162-96b4-5095a533c982.png)
