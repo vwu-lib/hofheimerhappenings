@@ -3,11 +3,38 @@ layout: null
 ---
 [
 {% for post in site.posts %}
+  {%- assign clean_content    = post.content | strip_html | strip_newlines -%}
+  {%- assign explicit_excerpt = post.excerpt | strip_html | strip_newlines -%}
+
+  {%- comment -%}
+    Decide excerpt source in this order:
+    1) front-matter `summary` (Option C)
+    2) explicit excerpt using <!--more--> (Option A)
+    3) full content as fallback (Option B)
+  {%- endcomment -%}
+  {%- if post.summary -%}
+    {%- assign excerpt_source = post.summary -%}
+  {%- elsif explicit_excerpt != "" and explicit_excerpt != clean_content -%}
+    {%- assign excerpt_source = explicit_excerpt -%}
+  {%- else -%}
+    {%- assign excerpt_source = clean_content -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    Safety net: always truncate to a max of 40 words.
+    Change 40 → 30/60/etc. if you want.
+  {%- endcomment -%}
+  {%- assign final_excerpt = excerpt_source
+    | strip_html
+    | strip_newlines
+    | truncatewords: 40
+  -%}
+
   {
-    "title": {{ post.title | jsonify }},
-    "url": {{ post.url | absolute_url | jsonify }},
-    "date": "{{ post.date | date_to_xmlschema }}",
-    "excerpt": {{ post.excerpt | strip_html | strip_newlines | jsonify }}
+    "title":   {{ post.title | jsonify }},
+    "url":     {{ post.url | absolute_url | jsonify }},
+    "date":    {{ post.date | date_to_xmlschema | jsonify }},
+    "excerpt": {{ final_excerpt | jsonify }}
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ]
