@@ -4,3 +4,4 @@ theme: minima
 
 url: "https://vwu-lib.github.io"
 baseurl: "/hofheimerhappenings"   # important if not using org root
+excerpt_separator: "<!--more-->"
