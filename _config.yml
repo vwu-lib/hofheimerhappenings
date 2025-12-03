@@ -1,0 +1,6 @@
+title: Hofheimer Happenings
+description: News and updates from H.C. Hofheimer II Library, Virginia Wesleyan University
+theme: minima
+
+url: "https://vwu-lib.github.io"
+baseurl: "/hofheimerhappenings"   # important if not using org root
